@@ -1,4 +1,4 @@
-# 🦁 Deep Cointegration Arbitrage (RL-Based Pairs Trading)
+# Deep Cointegration Arbitrage (RL-Based Pairs Trading)
 
 ![Project Status](https://img.shields.io/badge/Status-Completed-success)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-blue)
@@ -8,7 +8,7 @@ A robust, **Reinforcement Learning (RL)** based Statistical Arbitrage engine des
 
 ---
 
-## 📈 Performance (Out-of-Sample Backtest)
+## Performance (Out-of-Sample Backtest)
 
 The agent was trained on GLD/GDX data (2020-2023) and backtested on unseen data (2024).
 
@@ -20,7 +20,7 @@ The agent was trained on GLD/GDX data (2020-2023) and backtested on unseen data 
 
 ---
 
-## 🧠 Core Features
+## Core Features
 
 ### 1. Statistical Rigor
 - **Cointegration Testing:** Implements Engle-Granger two-step method to validate pair relationships.
@@ -36,7 +36,7 @@ The agent was trained on GLD/GDX data (2020-2023) and backtested on unseen data 
 
 ---
 
-## 🛠 Installation & Usage
+## Installation & Usage
 
 1. **Clone the repository:**
 ```bash
