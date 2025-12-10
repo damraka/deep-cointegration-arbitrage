@@ -40,7 +40,7 @@ The agent was trained on GLD/GDX data (2020-2023) and backtested on unseen data 
 
 1. **Clone the repository:**
 ```bash
-   git clone [https://github.com/yourusername/deep-cointegration-arbitrage.git](https://github.com/yourusername/deep-cointegration-arbitrage.git)
+   git clone [https://github.com/damraka/deep-cointegration-arbitrage.git](https://github.com/damraka/deep-cointegration-arbitrage.git)
    cd deep-cointegration-arbitrage
 ```
 2. **Create a Virtual Environment (Recommended):**
