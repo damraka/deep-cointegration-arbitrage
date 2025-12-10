@@ -19,10 +19,10 @@ class DataLoader:
         """
         print(f"Fetching data for {self.ticker_a} and {self.ticker_b}...")
         
-        # 'Adj Close' yerine 'Close' kullanıyoruz çünkü yfinance artık otomatik düzeltiyor.
+        # Using 'close' instead of 'adj close' as yfinance now returns adjusted close by default
         raw_data = yf.download([self.ticker_a, self.ticker_b], start=self.start, end=self.end)
         
-        # Sütun kontrolü yapalım (Garanti olsun)
+        # Column check
         if 'Adj Close' in raw_data.columns:
             data = raw_data['Adj Close']
         else:

@@ -34,7 +34,8 @@ def main():
     # 6. Train Agent (PPO Algorithm)
     print("Starting training with PPO...")
     model = PPO("MlpPolicy", env, verbose=1)
-    # 50.000 adıma çıkaralım. PPO sabırlı olmayı sever.
+
+    # Train the agent for 50,000 timesteps (adjust as needed)
     model.learn(total_timesteps=50000)
     
     print("Training finished. Saving model...")

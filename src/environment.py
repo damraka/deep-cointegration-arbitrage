@@ -40,7 +40,7 @@ class PairsTradingEnv(gym.Env):
         return self._next_observation(), {}
 
     def _next_observation(self):
-        # Volatiliteyi (son 5 adımın z-score değişimi) de ajana gösterelim
+        # Showing volatility
         volatility = 0
         if self.current_step > 5:
             volatility = np.std(self.z_scores[self.current_step-5:self.current_step])
@@ -81,27 +81,27 @@ class PairsTradingEnv(gym.Env):
                 step_reward = profit
                 self.position = 0
         
-        # Pozisyonu kapattıysa küçük bir işlem maliyeti (Slippage/Commission) düşelim
+        # Comission penalty if there was a trade
         if step_reward != 0:
             step_reward -= 0.5 # İşlem başına ceza
         
-        # Pozisyonda bekliyorsa çok küçük ceza (Parayı bağlama maliyeti)
+        # Comission penalty for holding a position
         if self.position != 0:
             step_reward -= 0.01
 
-        # --- REWARD SHAPING (Sihirli Dokunuş) ---
-        # Sadece kâra bakma, portföyün ne kadar stabil olduğuna bak.
+        # --- REWARD SHAPING ---
+        # Don't just look at immediate profit/loss, consider portfolio balance
         self.portfolio_history.append(self.balance)
         
-        # Eğer portföy başlangıçtan aşağı düştüyse ekstra ceza ver (Drawdown penalty)
+        # Drawdown Penalty
         if self.balance < self.initial_balance:
             step_reward -= 0.1
 
-        # Sharpe Ratio Reward (Basitleştirilmiş):
-        # Getiri / Standart Sapma
-        returns = np.diff(self.portfolio_history[-20:]) # Son 20 adımın getirisi
+        # Sharpe Ratio Reward:
+        # Earnings / Standard Deviation
+        returns = np.diff(self.portfolio_history[-20:]) # Earnings over last 20 steps
         if len(returns) > 1 and np.std(returns) > 0:
             sharpe = np.mean(returns) / np.std(returns)
-            step_reward += sharpe * 0.1 # Sharpe oranını ödüle ekle
+            step_reward += sharpe * 0.1 # Add Sharpe Ratio Reward
 
         return self._next_observation(), step_reward, done, False, {}
